@@ -7,11 +7,13 @@
 #include <iostream>
 #include <stdexcept>
 #include <functional>
+#include <algorithm>
 #include <vector>
 #include <cstring>
 #include <set>
 #include "DebugLayer.h"
 #include "QueueFamilyIndices.h"
+#include "SwapChainSupportDetails.h"
 #include "VDeleter.h"
 
 
@@ -49,6 +51,12 @@ private:
 	// Surface
 	VDeleter<VkSurfaceKHR> surface{instance, vkDestroySurfaceKHR};
 
+	// Swap Chain
+	VDeleter<VkSwapchainKHR> swapChain{device, vkDestroySwapchainKHR};
+	std::vector<VkImage> swapChainImages;
+	VkFormat swapChainImageFormat;
+	VkExtent2D swapChainExtent;
+
 	// Check if compiling as debug and include validation layers
 #ifdef NDEBUG
 	const bool enableValidationLayers = false;
@@ -58,10 +66,16 @@ private:
 
 
 
-// Set validation layer name
-const std::vector<const char*> validationLayers = {
-	"VK_LAYER_LUNARG_standard_validation"
-};
+	// Set validation layer name
+	const std::vector<const char*> validationLayers = {
+		"VK_LAYER_LUNARG_standard_validation"
+	};
+
+	// Extensions to use
+	const std::vector<const char*> deviceExtensions = 
+	{
+		VK_KHR_SWAPCHAIN_EXTENSION_NAME
+	};
 
 	
 	/*
@@ -137,6 +151,28 @@ const std::vector<const char*> validationLayers = {
 	 * Create Window Surface
 	 */
 	void createSurface(); 
+
+	/*
+	 * Check device supports extensions
+	 */
+	bool checkDeviceExtensionSupport(VkPhysicalDevice device);
+
+	/*
+	 * Check swap chain support
+	 */
+	SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
+
+	/*
+	 * Swap chain choosing
+	 */
+	VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
+	VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR> availablePresentModes);
+	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
+
+	/*
+	 * Initialize the swap chain
+	 */
+	void createSwapChain();
 
 	/*
 	 * Logic loop

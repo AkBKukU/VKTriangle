@@ -40,6 +40,7 @@ void HelloTriangleApplication::initVulkan()
 	createSurface(); // Create Window Surface
 	pickPhysicalDevice(); // Choose GPU
 	createLogicalDevice(); // Create Device Interface
+	createSwapChain(); // Create the swap chain for render images
 }
 
 /*

@@ -46,8 +46,17 @@ bool HelloTriangleApplication::isDeviceSuitable(VkPhysicalDevice device)
 {
 	QueueFamilyIndices indices = findQueueFamilies(device);
 
-	// Check for require queues
-	return indices.isComplete();
+	bool extensionSupported = checkDeviceExtensionSupport(device);
+	
+	bool swapChainAdequate = false;
+	
+	if (extensionSupported) {
+		SwapChainSupportDetails swapChainSupport = querySwapChainSupport(device);
+		swapChainAdequate = !swapChainSupport.formats.empty() && !swapChainSupport.presentModes.empty();
+	}
+
+	// Check for required queues, extensions, and swap chain
+	return indices.isComplete() && extensionSupported && swapChainAdequate;
 }
 
 /*
