@@ -57,6 +57,9 @@ private:
 	VkFormat swapChainImageFormat;
 	VkExtent2D swapChainExtent;
 
+	// Image View
+	std::vector<VDeleter<VkImageView>> swapChainImageViews;
+
 	// Check if compiling as debug and include validation layers
 #ifdef NDEBUG
 	const bool enableValidationLayers = false;
@@ -173,6 +176,22 @@ private:
 	 * Initialize the swap chain
 	 */
 	void createSwapChain();
+
+	
+	/*
+	 * Create Swap Chain Image Views
+	 */
+	void createImageViews();	
+	
+	/*
+	 * Create the Graphics Pipeline
+	 */ 
+	void createGraphicsPipeline();
+
+	/*
+	 * Shader module builder
+	 */
+	void createShaderModule(const std::vector<char>& code, VDeleter<VkShaderModule>& shaderModule);
 
 	/*
 	 * Logic loop

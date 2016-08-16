@@ -201,7 +201,8 @@ void HelloTriangleApplication::createSwapChain()
 		throw std::runtime_error("failed to create swap chain!");
 	}
 	
-	// Retrive pointers the the created images	
+	// Retrive pointers the the created images
+	// The number of images created can be different thant requested
 	vkGetSwapchainImagesKHR(device, swapChain, &imageCount, nullptr);
 	swapChainImages.resize(imageCount);
 	vkGetSwapchainImagesKHR(device, swapChain, &imageCount, swapChainImages.data());

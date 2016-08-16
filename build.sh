@@ -40,10 +40,16 @@ BUILD_DIR=bin
 
 CMAKE_CMD="cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE ../.."
 
+# Build Shaders
+CDIR=`pwd`
+cd src/shaders
+`./shaderBuild.sh`
+cd $CDIR
 
 # Create and move to build dir
 mkdir -p $BUILD_DIR/$CMAKE_BUILD_TYPE
 cd $BUILD_DIR/$CMAKE_BUILD_TYPE
+
 
 $CMAKE_CMD
 
