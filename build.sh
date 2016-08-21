@@ -31,7 +31,7 @@ function getYesNo ()
 	return $output
 }
 
-
+# just added
 
 #CMAKE_BUILD_TYPE=Release
 CMAKE_BUILD_TYPE=Debug
