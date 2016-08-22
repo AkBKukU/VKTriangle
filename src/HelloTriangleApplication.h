@@ -71,7 +71,9 @@ private:
 
 	// Render Passes
 	VDeleter<VkRenderPass> renderPass{device, vkDestroyRenderPass};
-
+	
+	// Graphics pipeline
+	VDeleter<VkPipeline> graphicsPipeline{device, vkDestroyPipeline};
 
 	// Set validation layer name
 	const std::vector<const char*> validationLayers = {
