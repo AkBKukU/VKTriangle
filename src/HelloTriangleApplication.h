@@ -204,6 +204,12 @@ private:
 	 */
 	void createRenderPass();
 
+
+	void createFramebuffers();
+	void createCommandPool();
+	void createCommandBuffers();
+	void createSemaphores();
+
 	/*
 	 * Logic loop
 	 */
