@@ -75,6 +75,9 @@ private:
 	// Graphics pipeline
 	VDeleter<VkPipeline> graphicsPipeline{device, vkDestroyPipeline};
 
+	// Framebuffer
+	std::vector<VDeleter<VkFramebuffer>> swapChainFramebuffers;
+
 	// Set validation layer name
 	const std::vector<const char*> validationLayers = {
 		"VK_LAYER_LUNARG_standard_validation"
@@ -209,6 +212,11 @@ private:
 	void createCommandPool();
 	void createCommandBuffers();
 	void createSemaphores();
+
+	/*
+	 * Draw the next frame
+	 */
+	void drawFrame();
 
 	/*
 	 * Logic loop
