@@ -66,6 +66,8 @@ private:
 #else
 	const bool enableValidationLayers = true;
 #endif
+	// Graphic pipeline layout
+	VDeleter<VkPipelineLayout> pipelineLayout{device, vkDestroyPipelineLayout};
 
 
 
