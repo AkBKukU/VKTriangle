@@ -42,6 +42,7 @@ void HelloTriangleApplication::initVulkan()
 	createLogicalDevice(); // Create Device Interface
 	createSwapChain(); // Create the swap chain for render images
 	createImageViews(); // Create ImageViwes to interact with swap images
+	createRenderPass(); // Set up render passes
 	createGraphicsPipeline(); // Create the graphic pipeline for rendering
 
 }

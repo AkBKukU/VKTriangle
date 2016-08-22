@@ -69,6 +69,8 @@ private:
 	// Graphic pipeline layout
 	VDeleter<VkPipelineLayout> pipelineLayout{device, vkDestroyPipelineLayout};
 
+	// Render Passes
+	VDeleter<VkRenderPass> renderPass{device, vkDestroyRenderPass};
 
 
 	// Set validation layer name
@@ -194,6 +196,11 @@ private:
 	 * Shader module builder
 	 */
 	void createShaderModule(const std::vector<char>& code, VDeleter<VkShaderModule>& shaderModule);
+
+	/*
+	 * Setup Render passes
+	 */
+	void createRenderPass();
 
 	/*
 	 * Logic loop
