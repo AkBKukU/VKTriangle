@@ -78,6 +78,13 @@ private:
 	// Framebuffer
 	std::vector<VDeleter<VkFramebuffer>> swapChainFramebuffers;
 
+	// Command pool
+	VDeleter<VkCommandPool> commandPool{device, vkDestroyCommandPool};
+
+	// Command buffers
+	std::vector<VkCommandBuffer> commandBuffers;
+
+
 	// Set validation layer name
 	const std::vector<const char*> validationLayers = {
 		"VK_LAYER_LUNARG_standard_validation"

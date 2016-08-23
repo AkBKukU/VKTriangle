@@ -55,5 +55,7 @@ void HelloTriangleApplication::mainLoop()
 	// Maintain loop until the window is closed	
 	while (!glfwWindowShouldClose(window)) {
 		glfwPollEvents();
+
+		drawFrame();				
 	}
 }
