@@ -44,6 +44,10 @@ void HelloTriangleApplication::initVulkan()
 	createImageViews(); // Create ImageViwes to interact with swap images
 	createRenderPass(); // Set up render passes
 	createGraphicsPipeline(); // Create the graphic pipeline for rendering
+	createFramebuffers();
+	createCommandPool();
+	createCommandBuffers();
+	createSemaphores();
 
 }
 

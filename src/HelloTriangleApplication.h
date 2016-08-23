@@ -84,6 +84,12 @@ private:
 	// Command buffers
 	std::vector<VkCommandBuffer> commandBuffers;
 
+	// Semephores
+	VDeleter<VkSemaphore> imageAvailableSemaphore{device, vkDestroySemaphore};
+	VDeleter<VkSemaphore> renderFinishedSemaphore{device, vkDestroySemaphore};
+
+
+
 
 	// Set validation layer name
 	const std::vector<const char*> validationLayers = {
