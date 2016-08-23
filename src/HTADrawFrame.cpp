@@ -19,6 +19,7 @@ void HelloTriangleApplication::drawFrame()
 	submitInfo.waitSemaphoreCount = 1;
 	submitInfo.pWaitSemaphores = waitSemaphores;
 	submitInfo.pWaitDstStageMask = waitStages;	
+	
 	submitInfo.commandBufferCount = 1;
 	submitInfo.pCommandBuffers = &commandBuffers[imageIndex];
 	
@@ -29,8 +30,24 @@ void HelloTriangleApplication::drawFrame()
 	
 	// Submit the buffer to the queue
 	if (vkQueueSubmit(graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE) != VK_SUCCESS) {
-		    throw std::runtime_error("failed to submit draw command buffer!");
+		throw std::runtime_error("failed to submit draw command buffer!");
 	}
+
+	// Configure presentation
+	VkPresentInfoKHR presentInfo = {};
+	presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+
+	presentInfo.waitSemaphoreCount = 1;
+	presentInfo.pWaitSemaphores = signalSemaphores;
+	
+	// Swap chain to submit to
+	VkSwapchainKHR swapChains[] = {swapChain};
+	presentInfo.swapchainCount = 1;
+	presentInfo.pSwapchains = swapChains;
+	presentInfo.pImageIndices = &imageIndex;
+
+	vkQueuePresentKHR(presentQueue, &presentInfo);
+
 
 }
 

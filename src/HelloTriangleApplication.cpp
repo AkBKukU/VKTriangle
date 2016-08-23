@@ -62,4 +62,6 @@ void HelloTriangleApplication::mainLoop()
 
 		drawFrame();				
 	}
+
+	vkDeviceWaitIdle(device);
 }
